@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Microbiology for Surgical Technologists – Chapter 17 Study Guide</title>
+<style>
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:Arial,sans-serif; background:#F4ECEC; color:#1a1a2e; min-height:100vh; }
+  header { background:linear-gradient(135deg,#7B1E1E 0%,#A93226 55%,#34495E 100%); color:white; padding:22px 30px; text-align:center; }
+  header h1 { font-size:1.55rem; font-weight:bold; }
+  header p  { font-size:0.88rem; margin-top:5px; opacity:0.85; }
+  header .badge { display:inline-block; background:#34495E; color:white; border-radius:20px; padding:3px 14px; font-size:0.78rem; margin-top:8px; }
+  .tab-bar { display:flex; flex-wrap:wrap; justify-content:center; background:#4A1010; padding:8px 14px 0; gap:4px; }
+  .tab-bar button { background:transparent; border:none; color:#E6B0AA; padding:9px 14px; cursor:pointer; font-size:0.82rem; border-radius:6px 6px 0 0; font-family:Arial,sans-serif; border-bottom:3px solid transparent; transition:all 0.2s; }
+  .tab-bar button:hover { background:#7B1E1E; color:#fff; }
+  .tab-bar button.active { background:#F4ECEC; color:#7B1E1E; font-weight:bold; border-bottom:3px solid #34495E; }
+  .tab-content { display:none; padding:24px 28px; max-width:960px; margin:0 auto; }
+  .tab-content.active { display:block; }
+  h2 { color:#7B1E1E; font-size:1.25rem; margin-bottom:14px; border-left:4px solid #34495E; padding-left:10px; }
+  h3 { color:#A93226; font-size:1.02rem; margin:18px 0 8px; }
+  .card { background:white; border-radius:8px; padding:18px 20px; margin-bottom:16px; box-shadow:0 2px 6px rgba(0,0,0,0.08); border-left:4px solid #34495E; }
+  .card.red    { border-left-color:#A93226; }
+  .card.blue   { border-left-color:#2471A3; }
+  .card.green  { border-left-color:#1E8449; }
+  .card.purple { border-left-color:#8E44AD; }
+  .card.teal   { border-left-color:#1ABC9C; }
+  .card.gold   { border-left-color:#D4AC0D; }
+  .card-title { font-weight:bold; color:#7B1E1E; font-size:0.97rem; margin-bottom:6px; }
+  .card-sub   { font-size:0.82rem; color:#34495E; font-style:italic; margin-bottom:6px; }
+  .card p,.card li { font-size:0.88rem; line-height:1.6; color:#2c3e50; }
+  .card ul,.card ol { margin-left:16px; margin-top:4px; }
+  .two-col   { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .three-col { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
+  @media(max-width:680px){ .two-col,.three-col { grid-template-columns:1fr; } }
+  .highlight-box { background:#EBF0F4; border-radius:8px; padding:14px 18px; margin:14px 0; font-size:0.88rem; line-height:1.6; color:#2C3E50; border:1px solid #AEB6BF; }
+  .highlight-box.red   { background:#FDECEA; border-color:#F1948A; color:#7B241C; }
+  .highlight-box.green { background:#D5F5E3; border-color:#82E0AA; color:#1A5E2A; }
+  .highlight-box.blue  { background:#D6EAF8; border-color:#AED6F1; color:#154360; }
+
+  /* pathogen grid */
+  .path-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; margin-top:10px; }
+  .path-card { background:white; border-radius:8px; padding:14px; box-shadow:0 2px 5px rgba(0,0,0,0.07); border-top:3px solid #A93226; }
+  .path-card .pname { font-weight:bold; font-size:0.9rem; color:#7B1E1E; margin-bottom:4px; }
+  .path-card .psub { font-size:0.78rem; color:#34495E; font-style:italic; margin-bottom:4px; }
+  .path-card p { font-size:0.83rem; color:#444; line-height:1.5; }
+
+  /* Sign table */
+  .sign-table { width:100%; border-collapse:collapse; font-size:0.83rem; }
+  .sign-table th { background:#7B1E1E; color:white; padding:7px 10px; text-align:left; }
+  .sign-table td { padding:6px 10px; color:#2c3e50; vertical-align:top; }
+  .sign-table tr:nth-child(even) td { background:#F4ECEC; }
+  .sign-table tr:nth-child(odd)  td { background:white; }
+
+  /* Terms */
+  .term-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(265px,1fr)); gap:12px; }
+  .term-card { background:white; border-radius:7px; padding:14px; box-shadow:0 2px 5px rgba(0,0,0,0.07); cursor:pointer; border-top:3px solid #34495E; transition:box-shadow 0.2s; }
+  .term-card:hover { box-shadow:0 4px 12px rgba(0,0,0,0.13); }
+  .term-front { font-weight:bold; color:#7B1E1E; font-size:0.92rem; }
+  .term-back  { display:none; font-size:0.83rem; color:#444; margin-top:8px; line-height:1.5; border-top:1px solid #eee; padding-top:8px; }
+  .term-hint  { font-size:0.72rem; color:#888; margin-top:4px; }
+  .term-card.open .term-back { display:block; }
+
+  /* Quiz */
+  .quiz-q { background:white; border-radius:8px; padding:18px 20px; margin-bottom:18px; box-shadow:0 2px 6px rgba(0,0,0,0.08); }
+  .quiz-q p { font-weight:bold; color:#7B1E1E; margin-bottom:12px; font-size:0.93rem; }
+  .quiz-opt { display:block; width:100%; text-align:left; background:#F4ECEC; border:1px solid #D7BDB8; border-radius:5px; padding:9px 14px; margin:5px 0; cursor:pointer; font-size:0.87rem; font-family:Arial,sans-serif; transition:background 0.15s; }
+  .quiz-opt:hover { background:#EBD9D6; }
+  .quiz-opt.correct { background:#D5F5E3; border-color:#27AE60; color:#1a5e2a; font-weight:bold; }
+  .quiz-opt.wrong   { background:#FDECEA; border-color:#E74C3C; color:#7B241C; }
+  .quiz-feedback { font-size:0.82rem; margin-top:8px; padding:6px 10px; border-radius:4px; display:none; }
+  .quiz-feedback.show { display:block; }
+  .quiz-feedback.ok { background:#D5F5E3; color:#1a5e2a; }
+  .quiz-feedback.no { background:#FDECEA; color:#7B241C; }
+  #quiz-score { text-align:center; padding:16px; font-size:1rem; font-weight:bold; color:#7B1E1E; display:none; }
+  #submit-quiz { display:block; margin:18px auto 0; background:#34495E; color:white; border:none; border-radius:6px; padding:10px 34px; font-size:0.95rem; cursor:pointer; font-family:Arial,sans-serif; }
+  #submit-quiz:hover { background:#2C3E50; }
+  .section-intro { font-size:0.89rem; color:#2c3e50; line-height:1.6; margin-bottom:16px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Microbiology for Surgical Technologists — 3rd Edition</h1>
+  <p>Rodriguez &bull; Chapter 17: Diseases of the Circulatory and Central Nervous Systems</p>
+  <span class="badge">&#129440; CST Board Prep &nbsp;&bull;&nbsp; ATA College</span>
+</header>
+<div class="tab-bar">
+  <button class="active" onclick="showTab('overview',this)">Chapter Overview</button>
+  <button onclick="showTab('hematology',this)">Hematology &amp; Blood Products</button>
+  <button onclick="showTab('circulatory1',this)">Bacteremia &amp; Endocarditis</button>
+  <button onclick="showTab('circulatory2',this)">Myocarditis, Pericarditis &amp; Vasculitis</button>
+  <button onclick="showTab('cns1',this)">Blood-Brain Barrier &amp; Meningitis</button>
+  <button onclick="showTab('cns2',this)">Encephalitis, Brucellosis &amp; Abscess</button>
+  <button onclick="showTab('terms',this)">Key Terms</button>
+  <button onclick="showTab('quiz',this)">Quiz</button>
+</div>
+
+<!-- ════ TAB 1: OVERVIEW ════ -->
+<div id="overview" class="tab-content active">
+  <h2>Chapter Overview &amp; Clinical Significance</h2>
+  <p class="section-intro">Chapter 17 covers infections of the cardiovascular (circulatory) system and the central nervous system (CNS) — two body systems essential for survival, where pathogenic compromise can be rapidly fatal. The chapter also addresses contamination of donated blood products and the blood-brain barrier.</p>
+
+  <div class="card red">
+    <div class="card-title">&#9888;&#65039; Clinical Significance — Bloodborne Pathogens &amp; Personal Protection</div>
+    <ul>
+      <li>Bloodborne pathogens are very familiar to surgical teams — extensive training on <strong>sharps injury prevention</strong> and <strong>PPE</strong> should focus on actual risks from unknown/unrecognized microbial pathogens, not just technique</li>
+      <li>The surgical team must apply the <strong>SAME vigilance to their own health</strong> as they do to protecting the patient</li>
+      <li>Most patients are <strong>unaware</strong> if they carry infectious microbes in their blood — this is why <strong>Standard Precautions presume EVERY individual is potentially infectious</strong></li>
+      <li>Prevention tools: <strong>hands-free, neutral-zone, no-touch</strong> techniques for passing sharps; <strong>blunt suture needles</strong> for large/deep wound closure; <strong>eye protection</strong> for EVERY case (not just "big" cases) to prevent blood transfer to conjunctival membranes</li>
+    </ul>
+  </div>
+
+  <h3>Chapter Objectives</h3>
+  <div class="card blue">
+    <ul>
+      <li>Discuss the mechanisms of contamination of blood products</li>
+      <li>Identify pathogens associated with infections of the cardiovascular system</li>
+      <li>Identify pathogens associated with infections of the CNS</li>
+      <li>Describe various infections caused by pathogenic invasion of cardiovascular and CNS structures</li>
+      <li>Apply critical thinking relating chapter material to the surgical environment of care or broader global community</li>
+    </ul>
+  </div>
+
+  <h3>Why These Two Systems Are Linked</h3>
+  <div class="card teal">
+    <p>The cardiovascular and CNS are anatomically and physiologically connected: blood circulates THROUGH the brain, and the <strong>blood-brain barrier</strong> is the key checkpoint between them. Pathogens that enter the bloodstream (bacteremia, septicemia) can travel to and infect the CNS (meningitis, encephalitis, brain abscess) — and conversely, CNS infections can have cardiovascular origins (e.g., infective endocarditis with septic emboli to the brain).</p>
+  </div>
+</div>
+
+<!-- ════ TAB 2: HEMATOLOGY & BLOOD PRODUCTS ════ -->
+<div id="hematology" class="tab-content">
+  <h2>Hematology, Serology &amp; Blood Product Contamination</h2>
+
+  <div class="card blue">
+    <div class="card-title">Hematology — Basics</div>
+    <ul>
+      <li><strong>Hematology</strong> = the study of blood and blood-forming tissues; primarily focuses on circulatory system cells</li>
+      <li><strong>White blood cells (leukocytes)</strong> — body's defense system against bacteria/viruses</li>
+      <li><strong>Red blood cells (erythrocytes)</strong> — transport oxygen and carbon dioxide</li>
+      <li><strong>Platelets (thrombocytes)</strong> — help prevent blood loss during injury</li>
+      <li>All suspended in <strong>plasma</strong>; centrifugation separates cells from plasma</li>
+      <li><strong>Total blood volume</strong>: average adult has <strong>4–8 liters</strong> (1 liter = 1.06 quarts)</li>
+      <li><strong>Blood composition</strong>: cells = 45% of blood volume; plasma = 55%. Plasma = 90% water + 10% solids (proteins, carbohydrates, enzymes, vitamins, lipids, salts)</li>
+      <li><strong>Whole blood</strong> = cellular components + plasma. <strong>Sera</strong> = clear, straw-colored liquid remaining after plasma is separated from fibrinogen AND blood cells have clotted</li>
+    </ul>
+  </div>
+
+  <h3>Serology &amp; Laboratory Testing</h3>
+  <div class="card teal">
+    <ul>
+      <li>Historically, <strong>serology</strong> referred to in vitro immune sera reactions: precipitin, agglutination, complement fixation</li>
+      <li>Currently: determines if a blood sample contains <strong>antibodies or antigens</strong> to infectious diseases by calculating <strong>serum titers</strong></li>
+      <li>Lab tests: <strong>slide agglutination</strong> and <strong>ELISA</strong></li>
+      <li><strong>Western blot test</strong> — identifies bacteria in serum, including <em>Borrelia burgdorferi</em> (Lyme disease); also used to identify HIV</li>
+      <li>Western blot process: proteins separated by <strong>electrophoresis</strong> → transferred to filter (blotting) → dye-tagged antibodies washed over filter → <strong>colored band = positive test</strong> (antibody-antigen bonding)</li>
+    </ul>
+  </div>
+
+  <h3>Transmission of Infections from Donated Blood Products</h3>
+  <div class="card red">
+    <p>Blood transfusions are usually safe and life-saving, but despite strict donor screening, blood samples can occasionally be contaminated. Infective agents transmitted through transfusion can cause serious systemic sepsis.</p>
+    <div class="two-col" style="margin-top:10px;">
+      <div>
+        <p style="font-weight:bold;color:#A93226;">Bacterial</p>
+        <p>Gram-positive <em>Staphylococcus aureus</em> and <em>S. epidermidis</em> — percutaneous skin puncture by hollow-bore hypodermic needle provides entry</p>
+        <p style="font-weight:bold;color:#A93226;margin-top:8px;">Parasitic</p>
+        <ul>
+          <li>Tick-borne: anaplasmosis (<em>Anaplasma phagocytophilum</em>), babesiosis (<em>Babesia microti</em>)</li>
+          <li>Chagas disease (<em>Trypanosoma cruzi</em>) — triatomine ("kissing bugs")</li>
+          <li>Leishmaniasis (<em>Leishmania</em>) — sand flies</li>
+          <li>Malaria (<em>Plasmodium falciparum</em>) — mosquito-borne</li>
+        </ul>
+      </div>
+      <div>
+        <p style="font-weight:bold;color:#A93226;">Viral</p>
+        <p>Hepatitis B (HBV), Hepatitis C (HCV), HIV, HTLV (human T-lymphotropic virus), West Nile virus (WNV), Zika virus</p>
+        <p style="font-weight:bold;color:#A93226;margin-top:8px;">Prions</p>
+        <p>Creutzfeldt-Jakob disease (CJD) or rapidly progressing variant CJD (vCJD)</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ TAB 3: BACTEREMIA & ENDOCARDITIS ════ -->
+<div id="circulatory1" class="tab-content">
+  <h2>Bacteremia, Septicemia &amp; Infective Endocarditis</h2>
+
+  <div class="card red">
+    <div class="card-title">Bacteremia &amp; Septicemia</div>
+    <ul>
+      <li><strong>Bacteremia</strong> — bacterial infection of the bloodstream. Entry: minor skin injuries, major trauma/surgery, dissemination from other body system infections, or direct access via blood transfusions</li>
+      <li><strong>HAIs</strong> from surgical procedures or indwelling catheters can introduce microbes directly or indirectly (infected wound, prosthetic device) → postoperative bacteremia</li>
+      <li><strong>Septicemia</strong> — expansion of bacteremia; serious medical emergency; can escalate to <strong>SEPTIC SHOCK / SIRS (Systemic Inflammatory Response Syndrome)</strong></li>
+      <li><strong>Signs</strong>: hyperthermia OR hypothermia, confusion, rash, tachycardia, hypotension</li>
+      <li><strong>~40% of septicemia patients progress to septic shock</strong>; of THOSE, approximately <strong>HALF die</strong></li>
+      <li>Highest risk: <strong>immunosuppressed/immunocompromised</strong> patients</li>
+      <li>Gram-positive AND Gram-negative bacteria EQUALLY responsible; can be community-acquired OR HAI</li>
+    </ul>
+  </div>
+
+  <h3>Common Pathogens Causing Septicemia by Origin System</h3>
+  <table class="sign-table">
+    <tr><th>Body System</th><th>Common Pathogens</th></tr>
+    <tr><td>Respiratory</td><td>Streptococcus pneumoniae, Chlamydia pneumoniae, Haemophilus influenzae, Legionella spp.</td></tr>
+    <tr><td>GI tract</td><td>Escherichia coli, Bacteroides fragilis, Group B Streptococcus (neonates), Yersinia enterocolitica (rare)</td></tr>
+    <tr><td>Skin &amp; soft tissue</td><td>S. aureus, S. pyogenes, Clostridium spp., P. aeruginosa</td></tr>
+    <tr><td>Genitourinary</td><td>E. coli, Klebsiella spp., Enterobacter spp., Proteus spp., Enterococcus spp.</td></tr>
+    <tr><td>CNS</td><td>S. pneumoniae, N. meningitidis, L. monocytogenes, E. coli, H. influenzae, P. aeruginosa, Staphylococcus spp.</td></tr>
+  </table>
+
+  <h3>Infective Endocarditis (IE)</h3>
+  <div class="card">
+    <div class="card-title">General Definition &amp; Risk Factors</div>
+    <ul>
+      <li>Serious infection of the <strong>endocardium</strong> (innermost heart lining) — covers heart valves</li>
+      <li>Valves suffer <strong>valvular incompetence/insufficiency</strong> → may lead to intractable CHF + abscesses involving the myocardium</li>
+      <li>Occurs in patients with <strong>damaged/abnormal heart architecture</strong> + opportunistic bacteria entering vascular system via trauma, infection elsewhere, or high-risk activities (IV drug use, unprotected sex)</li>
+      <li><strong>High morbidity; generally FATAL if untreated</strong></li>
+    </ul>
+  </div>
+
+  <div class="two-col">
+    <div class="card blue">
+      <div class="card-title">Subacute Native Valve Endocarditis</div>
+      <ul>
+        <li>SLOW to develop</li>
+        <li>Usually caused by <strong>α-hemolytic Streptococcus</strong> (often from oral cavity); also Enterococcus and Staphylococcus</li>
+        <li>From periodontal, pharyngeal, or remote infections</li>
+        <li>Dentists prescribe <strong>prophylactic antibiotics</strong> before extractions to prevent colonization of pre-existing valve lesions (rheumatic fever, mitral valve stenosis, congenital anomalies)</li>
+        <li>Bacterial colony protected from phagocytosis by blood clots → can break loose → travel to lungs (pulmonary thrombosis) or brain (cerebral infarct)</li>
+      </ul>
+    </div>
+    <div class="card red">
+      <div class="card-title">Acute IE, PVE &amp; IVDA IE</div>
+      <ul>
+        <li><strong>Acute IE</strong>: SUDDEN onset, involves NORMAL valves, typically <em>S. aureus</em> or Group B Streptococcus — can damage valves rapidly, fatal if untreated</li>
+        <li><strong>PVE (Prosthetic Valve Endocarditis)</strong>: 5–10% of all IE. Mechanical valves infected EARLY (first 3 months); bioprosthetic valves LATE (after 1 year). Mitral > aortic. <em>S. aureus</em> = most common cause both early and late. Pacemakers/ICDs have similar risk</li>
+        <li><strong>IVDA IE</strong>: up to 75% involve NORMAL native valves; 50% involve TRICUSPID valve. FUNGAL IE (Candida albicans) in IV drug users/ICU patients on broad-spectrum antibiotics — blood cultures often NEGATIVE, diagnosis via large emboli microscopy</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Clinical Signs of Infective Endocarditis</h3>
+  <div class="card gold">
+    <p><strong>85% of IE patients</strong> have a detectable heart murmur on auscultation. Classic signs (in ~half of IE patients):</p>
+    <ul style="margin-top:8px;">
+      <li><strong>Subungual hemorrhages</strong> (under nails)</li>
+      <li><strong>Petechiae</strong> of the skin</li>
+      <li><strong>Janeway lesions</strong> — non-tender maculae on palms/soles</li>
+      <li><strong>Osler nodes</strong> — TENDER subcutaneous nodules on distal finger/toe pads</li>
+      <li><strong>Roth spots</strong> — retinal hemorrhages with clear centers (relatively RARE, 5%)</li>
+    </ul>
+    <p style="margin-top:8px;">Other signs: embolic stroke, paralysis, hemiparesis, stiff neck, delirium, distended neck veins, CHF on chest X-ray, hepatosplenomegaly, pericardial/pleural friction rub, gallops/rales, cardiac arrhythmia.</p>
+    <p style="margin-top:8px;"><strong>Treatment</strong>: antibiotics primary; surgery for lysis of adhesions, valve repair/replacement; CHF treatment + supplemental O2; renal damage may require hemodialysis.</p>
+  </div>
+</div>
+
+<!-- ════ TAB 4: MYOCARDITIS, PERICARDITIS & VASCULITIS ════ -->
+<div id="circulatory2" class="tab-content">
+  <h2>Myocarditis, Pericarditis &amp; Vasculitis</h2>
+
+  <div class="card purple">
+    <div class="card-title">Myocarditis</div>
+    <p>Inflammation of the <strong>middle, muscular layer</strong> of the heart (myocardium) — caused by a variety of pathogens:</p>
+    <div class="two-col" style="margin-top:8px;">
+      <ul>
+        <li><strong>Bacterial</strong>: Chlamydia, Mycoplasma, Streptococcus, Staphylococcus, Borrelia, Treponema</li>
+        <li><strong>Viral</strong>: Coxsackie B, Cytomegalovirus, Epstein-Barr, Hepatitis C, Herpes simplex, HIV, Parvovirus</li>
+      </ul>
+      <ul>
+        <li><strong>Fungal</strong>: Aspergillus, Candida, Coccidioides, Cryptococcus, Histoplasma</li>
+        <li>Symptoms often mild/absent → undetected → may lead to <strong>CARDIOMYOPATHY</strong> (heart failure)</li>
+      </ul>
+    </div>
+    <p style="margin-top:8px;"><strong>Myocarditis and cardiomyopathy are the LEADING CAUSES for heart transplantation in the U.S.</strong></p>
+  </div>
+
+  <h3>Pericarditis</h3>
+  <div class="card blue">
+    <ul>
+      <li>Inflammation of the <strong>pericardium</strong> (outer layer of heart); several forms</li>
+      <li>Often SECONDARY to other bacterial infections (lung abscesses, pneumonia) — most commonly <strong>Streptococcus</strong></li>
+      <li>Less commonly VIRAL — called <strong>acute non-specific pericarditis</strong></li>
+      <li><strong>Chronic pericarditis</strong> — pericardium binds to heart via adhesions → requires SURGICAL LYSIS OF ADHESIONS</li>
+      <li><strong>Extrapulmonary TB pericarditis</strong> (<em>Mycobacterium tuberculosis</em>) — calcium/fibrin deposits thicken/constrict pericardial sac → entraps fluid → <strong>CARDIAC TAMPONADE</strong> (life-threatening)</li>
+      <li><strong>Pericardiocentesis</strong> may be required to drain fluid and relieve pressure</li>
+    </ul>
+  </div>
+
+  <h3>Vasculitis (Angiitis)</h3>
+  <div class="card red">
+    <div class="card-title">Inflammation of Blood Vessels</div>
+    <ul>
+      <li>Vascular inflammation outcomes: NARROWING of lumen → reduced blood flow; COMPLETE constriction → ischemia/necrosis; or DILATATION → ANEURYSM formation</li>
+      <li>Severity depends on vessel SIZE and NUMBER involved</li>
+      <li><strong><em>Pseudomonas aeruginosa</em></strong> — produces characteristic <strong>BLUE PUS</strong> (pigment: <strong>pyocyanin</strong>) which mediates tissue damage</li>
+      <li><strong>Ecthyma gangrenosum</strong> — P. aeruginosa's affinity for invading blood vessels; begins as superficial skin lesions (buttocks, perineum, axillary region, extremities) → center turns BLACK (necrosis from destruction of capillaries/arterioles/venules)</li>
+      <li><strong>Mortality rate HIGH among NEUTROPENIC patients</strong></li>
+      <li>Deep wounds, open bone fractures, severe burns → risk of <strong>OSTEOMYELITIS</strong> caused by P. aeruginosa</li>
+    </ul>
+  </div>
+
+  <h3>Pseudomonas aeruginosa Endocarditis</h3>
+  <div class="card gold">
+    <ul>
+      <li>Patients with <strong>prosthetic heart valves</strong> and <strong>IV drug users</strong> prone to P. aeruginosa endocarditis</li>
+      <li>IV drug users: typically younger males, otherwise healthy except substance use disorder — infection from drug paraphernalia contaminated with <strong>water-borne</strong> bacterial cells</li>
+      <li><strong>TRICUSPID valve</strong> (between right atrium and ventricle) MORE often involved than other heart valves</li>
+      <li>Severe form may affect LEFT HEART (left-sided endocarditis) — POOR PROGNOSIS</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ════ TAB 5: BLOOD-BRAIN BARRIER & MENINGITIS ════ -->
+<div id="cns1" class="tab-content">
+  <h2>Blood-Brain Barrier &amp; Meningitis</h2>
+
+  <div class="card blue">
+    <div class="card-title">The Blood-Brain Barrier</div>
+    <ul>
+      <li>Physiological barrier between systemic blood and brain <strong>PARENCHYMA</strong></li>
+      <li>Prevents entrance of ANTIBODIES and large molecules — BUT remains PERMEABLE to water, oxygen, CO2, and non-ionic solutes (<strong>alcohol, glucose, anesthetic drugs</strong>)</li>
+      <li>Formed by TIGHT JUNCTIONS between <strong>choroid plexus</strong>, arachnoid epithelial cells, and capillary endothelial cells</li>
+      <li>Clearance of harmful substances once the barrier is PENETRATED is DIFFICULT</li>
+      <li>NO barrier exists between brain and <strong>CSF</strong> — CSF is in direct contact with brain matter</li>
+      <li>Free movement of inflammatory cells/pathogens within brain extracellular fluid is RESTRICTED because cellular space between neurons is SMALLER than the smallest viruses</li>
+    </ul>
+  </div>
+
+  <div class="card teal">
+    <div class="card-title">CNS Infections — General Principles</div>
+    <ul>
+      <li>CNS tissues are remarkably RESISTANT to infection — but NOT fully impervious; if infection occurs, damage can be SEVERE</li>
+      <li>Brain/spinal cord infections (bacteria, viruses, fungi) are relatively UNCOMMON — the CNS has NO intrinsic immune system</li>
+      <li><strong>QUICK diagnosis and treatment</strong> are CRITICAL to preventing death or permanent neurologic deficits</li>
+    </ul>
+  </div>
+
+  <h3>Meningitis — Routes of Entry &amp; Pathogens by Age Group</h3>
+  <div class="card">
+    <div class="card-title">General &amp; Acute Bacterial Meningitis</div>
+    <ul>
+      <li>Pathogens reach the meninges via <strong>bloodstream</strong>, penetrating wound, or surgical procedure</li>
+      <li>Abscesses can SPREAD from adjoining structures (nasal sinuses, periodontium)</li>
+      <li><strong>Non-infectious causes</strong>: sarcoidosis, some cancers, cancer drugs, organ rejection prevention drugs — can mimic infectious meningitis symptoms</li>
+      <li><strong>Acute bacterial meningitis</strong> — infection of meningeal PIA MATER and ARACHNOID layers; LIFE-THREATENING, requires IMMEDIATE treatment</li>
+      <li>Bacteria are normal residents of nose/upper respiratory/GI tract — infect CNS if immune system depressed</li>
+      <li>May be a COMPLICATION of endocarditis, pneumonia, or otitis media; any penetrating skull injury (including surgery) can allow bacterial entry</li>
+    </ul>
+  </div>
+
+  <table class="sign-table">
+    <tr><th>Age Group</th><th>Common Bacterial Pathogens</th></tr>
+    <tr><td>Neonatal period</td><td>Group B Streptococcus, E. coli, Listeria monocytogenes</td></tr>
+    <tr><td>Infants &gt; 1 month</td><td>Streptococcus pneumoniae, Haemophilus influenzae type B (Hib), Neisseria meningitidis</td></tr>
+    <tr><td>Adults (non-surgical/non-trauma)</td><td>N. meningitidis, S. pneumoniae, L. monocytogenes</td></tr>
+  </table>
+
+  <div class="highlight-box">
+    <strong>Symptoms:</strong> headache, stiff neck, sore throat (after respiratory illness), vomiting. Physician tries to lower patient's chin to chest (may be too painful = positive sign). Older children/adults: irritability, confusion, progression from drowsiness → stupor → coma → death.
+  </div>
+
+  <h3>Haemophilus influenzae Meningitis (Hib)</h3>
+  <div class="card red">
+    <ul>
+      <li>Hib spreads from upper respiratory tract to sinuses/middle ear → otitis media (children at elevated risk)</li>
+      <li>If bacteria invade bloodstream → travel to lymph nodes → invade meninges → meningitis (mechanism of crossing blood-brain barrier NOT fully understood)</li>
+      <li>Infants ≤3 months: protected by MATERNAL ANTIBODIES (infection rare)</li>
+      <li><strong>Between 6 months–1 year</strong>: maternal antibodies decline → PEAK INCIDENCE of disease; up to <strong>90% mortality if UNTREATED</strong></li>
+      <li>Enduring deficits after recovery: hearing loss, blindness, chronic seizures, hydrocephalus, developmental problems</li>
+    </ul>
+  </div>
+
+  <h3>Diagnosis, Treatment &amp; Prevention</h3>
+  <div class="card blue">
+    <ul>
+      <li>Diagnostic specimens: <strong>CSF (spinal tap)</strong>, blood samples, sputum, nasopharyngeal swabs, conjunctival exudates</li>
+      <li><strong>Blood cultures</strong> highly effective for isolating bacteria; species ID critical for OPTIMAL antibiotic selection</li>
+      <li><strong>Hib vaccine</strong> = routine childhood immunization. 3 monovalent conjugate Hib vaccines + 3 combination vaccines containing Hib</li>
+      <li>Schedule: series at 2, 4, and 6 months OR 2 and 4 months (depending on vaccine); booster at 12–15 months</li>
+      <li><strong>RESULT: 99% DECREASE</strong> in Hib infections in children &lt;5 years since vaccine protocols implemented in the U.S.</li>
+    </ul>
+  </div>
+
+  <h3>Fungal, Parasitic &amp; Viral Meningitis</h3>
+  <div class="two-col">
+    <div class="card gold">
+      <div class="card-title">Fungal Meningitis</div>
+      <ul>
+        <li><strong>Cryptococcus</strong> — develops SLOWLY vs. acute bacterial; results in CHRONIC meningitis</li>
+        <li>Other fungi: <strong>Histoplasma, Blastomyces, Coccidioides</strong> (found in soil); <strong>Candida</strong> (nearly ALWAYS an HAI)</li>
+      </ul>
+    </div>
+    <div class="card purple">
+      <div class="card-title">Parasitic Meningitis — PAM</div>
+      <ul>
+        <li><strong>Naegleria fowleri</strong> (microscopic amoeba) → <strong>Primary Amoebic Meningoencephalitis (PAM)</strong></li>
+        <li>Enters through the NOSE while diving/swimming in warm FRESHWATER (lakes, ponds, rivers, underchlorinated pools, warm springs) — OR via contaminated water heater + Neti pot sinus irrigation</li>
+        <li><strong>Drinking</strong> contaminated water is NOT a transmission route</li>
+        <li>NOT found in SALTWATER (coastal waters)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card teal">
+    <div class="card-title">Viral Meningitis — MOST COMMON Form</div>
+    <p>Causes: non-polio enteroviruses (coxsackievirus, enterovirus, echovirus, parechovirus); mumps (Rubulavirus); herpes viruses (HSV, VZV); measles virus; influenza virus; West Nile virus; lymphocytic choriomeningitis virus. CMV and HIV/AIDS may cause CHRONIC infection.</p>
+  </div>
+</div>
+
+<!-- ════ TAB 6: ENCEPHALITIS, BRUCELLOSIS & ABSCESS ════ -->
+<div id="cns2" class="tab-content">
+  <h2>Encephalitis, Brucellosis &amp; Brain Abscess</h2>
+
+  <div class="card red">
+    <div class="card-title">Encephalitis</div>
+    <ul>
+      <li>Inflammation of the <strong>brain parenchyma</strong> — MORE DANGEROUS than viral meningitis</li>
+      <li>Caused by SAME viruses as meningitis PLUS <strong>arboviruses</strong> and <strong>rabies</strong></li>
+      <li><strong>Herpes simplex encephalitis</strong> — MOST COMMON type in U.S.; up to <strong>70% mortality if UNTREATED</strong></li>
+      <li><strong>Paralytic poliomyelitis</strong> — targets select MOTOR NEURONS of the CNS</li>
+      <li><strong>Rabies</strong> — caused by LYSSAVIRUS; endemic in U.S. wild animals (skunks, foxes, raccoons, bats); characteristic BULLET SHAPE on scanning electron microscopy; transmission by BITE from infected animal</li>
+    </ul>
+  </div>
+
+  <h3>Brucellosis</h3>
+  <div class="card blue">
+    <ul>
+      <li>Bacterial infection affecting BOTH cardiovascular system AND CNS</li>
+      <li>Multiple names based on outbreak location or presentation: <strong>Malta fever, fever of Crete, Mediterranean fever, undulant fever, gastric remittent fever</strong></li>
+      <li><strong>Acute</strong>: flu-like symptoms + weight loss + abdominal/joint/back pain. Most cases RESOLVE with appropriate antibiotics</li>
+      <li><strong>Chronic</strong>: similar to tuberculosis — recurrent symptoms for YEARS</li>
+      <li><strong>Most serious complications</strong>: infective endocarditis, meningitis, encephalitis</li>
+    </ul>
+  </div>
+
+  <h3>Brain Abscess &amp; Subdural Empyema</h3>
+  <div class="card purple">
+    <div class="card-title">Brain Abscess</div>
+    <ul>
+      <li>Collection of PUS — usually in FRONTAL or TEMPORAL lobes of cerebrum; may be FREE or ENCAPSULATED; may occur in MULTIPLE areas</li>
+      <li>Typically SECONDARY to another infection elsewhere in the body</li>
+      <li>Primary infections: <strong>otitis media, sinusitis, mastoiditis</strong>; bacteria can also travel from a tooth abscess or heart/lung infections</li>
+      <li>Symptoms = those typically associated with <strong>increased intracranial pressure (ICP)</strong></li>
+    </ul>
+    <div class="card-title" style="margin-top:12px;">Subdural Empyema</div>
+    <ul>
+      <li>Collection of pus just UNDER the dural meninges</li>
+      <li>Frequently a complication of sinusitis or otitis media; OR from bacteria entering via penetrating head injury</li>
+      <li><strong>Surgery may be required</strong> to drain pus and relieve intracranial pressure</li>
+    </ul>
+  </div>
+
+  <div class="highlight-box red">
+    <strong>OR Clinical Connection — Discussion Activity:</strong> A craniotomy for excision of a left-sided intracranial lesion reveals an ENCAPSULATED MASS filled with PURULENT MATERIAL — consistent with a <strong>BRAIN ABSCESS</strong>. The patient's history of a recent BLOOD TRANSFUSION for anemia is highly relevant — bacterial pathogens (S. aureus, S. epidermidis) from blood transfusion contamination can seed distant sites including the brain, presenting later as an abscess. Other circulatory-system-spread infections to consider: infective endocarditis with septic emboli to the brain (cerebral infarct → secondary abscess), and bacteremia/septicemia from any source crossing the blood-brain barrier.
+  </div>
+
+  <h3>Putting It All Together — Why CV and CNS Infections Are Linked</h3>
+  <div class="card teal">
+    <p>Pathogens readily move from the cardiovascular system to the CNS because: (1) the brain receives a massive blood supply and pathogens circulating in blood are delivered directly to brain capillaries; (2) the blood-brain barrier, while protective, can be PENETRATED by certain organisms or during inflammation/injury, after which clearance is DIFFICULT; (3) once past the barrier, there is NO additional barrier between blood vessels/CSF and brain parenchyma; (4) septic emboli from endocarditis can lodge in cerebral vessels causing infarcts that become secondary abscesses; (5) the CNS has NO intrinsic immune system to mount a rapid local defense.</p>
+  </div>
+</div>
+
+<!-- ════ TAB 7: KEY TERMS ════ -->
+<div id="terms" class="tab-content">
+  <h2>Key Terms — Chapter 17</h2>
+  <p class="section-intro">Click any card to reveal the definition.</p>
+  <div class="term-grid">
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Aneurysm</div><div class="term-hint">Click to reveal</div><div class="term-back">An abnormal dilation/bulging of a blood vessel wall, which can result from vasculitis causing weakening and dilatation of the vessel. Risk of rupture increases with size.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Anomalies (cardiac/congenital)</div><div class="term-hint">Click to reveal</div><div class="term-back">Structural abnormalities present from birth (congenital heart anomalies) that can create pre-existing lesions on heart valves, predisposing patients to subacute infective endocarditis.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Auscultation</div><div class="term-hint">Click to reveal</div><div class="term-back">The act of listening to internal body sounds (typically with a stethoscope), such as heart murmurs, gallops, rales, or friction rubs — used to detect signs of infective endocarditis, pericarditis, or CHF.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Bioprosthetic Valve</div><div class="term-hint">Click to reveal</div><div class="term-back">A heart valve replacement made from biological tissue (often porcine or bovine). More likely than mechanical valves to become infected LATE (after 1 year) in prosthetic valve endocarditis (PVE).</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Cardiac Arrhythmia</div><div class="term-hint">Click to reveal</div><div class="term-back">An irregular heartbeat — can be an observed sign of infective endocarditis due to damage to the heart's conduction system or muscle from infection/inflammation.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Cardiac Tamponade</div><div class="term-hint">Click to reveal</div><div class="term-back">A life-threatening condition where fluid accumulates in the pericardial sac, compressing the heart and preventing it from filling/pumping properly. Can result from extrapulmonary TB pericarditis. Treated with pericardiocentesis.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Cardiomyopathy</div><div class="term-hint">Click to reveal</div><div class="term-back">A disease of the heart muscle that can result from untreated/undetected myocarditis. Myocarditis and cardiomyopathy together are the leading causes of heart transplantation in the U.S.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Cardioverter Defibrillator</div><div class="term-hint">Click to reveal</div><div class="term-back">An implanted device that monitors heart rhythm and delivers electrical shocks to correct dangerous arrhythmias. Carries a similar infection risk profile to prosthetic valve endocarditis (PVE).</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Cerebral Infarct</div><div class="term-hint">Click to reveal</div><div class="term-back">Death of brain tissue due to interrupted blood supply (stroke) — can result when an embolus from an infected heart valve (infective endocarditis) breaks loose and travels to the brain.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Choroid Plexus</div><div class="term-hint">Click to reveal</div><div class="term-back">A network of cells in the brain's ventricles that produces cerebrospinal fluid (CSF). Tight junctions between choroid plexus cells, arachnoid epithelial cells, and capillary endothelial cells form the blood-brain barrier.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Electrophoresis</div><div class="term-hint">Click to reveal</div><div class="term-back">A laboratory technique that separates proteins (or other molecules) based on size/charge using an electric field. Used in the Western blot test to separate serum proteins before transferring them to a filter for antibody detection.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Emboli</div><div class="term-hint">Click to reveal</div><div class="term-back">Detached fragments (e.g., blood clots containing bacterial colonies) that travel through the bloodstream and can lodge in distant vessels, causing pulmonary thrombosis, cerebral infarct, or other organ damage — a complication of infective endocarditis.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Empyema (subdural)</div><div class="term-hint">Click to reveal</div><div class="term-back">A collection of pus just under the dural meninges of the brain — frequently a complication of sinusitis or otitis media, or from penetrating head injury. May require surgical drainage to relieve intracranial pressure.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Extrapulmonary (TB)</div><div class="term-hint">Click to reveal</div><div class="term-back">Tuberculosis infection occurring OUTSIDE the lungs — e.g., extrapulmonary TB pericarditis, where M. tuberculosis causes calcium/fibrin deposits that thicken and constrict the pericardial sac, leading to cardiac tamponade.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Gallops</div><div class="term-hint">Click to reveal</div><div class="term-back">Abnormal extra heart sounds (S3 or S4) heard on auscultation, often associated with heart failure — can be an observed sign in patients with infective endocarditis or myocarditis-related cardiomyopathy.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Heart Murmur</div><div class="term-hint">Click to reveal</div><div class="term-back">An abnormal whooshing/swishing sound heard during the cardiac cycle, caused by turbulent blood flow — often from damaged/incompetent valves. Present in 85% of infective endocarditis patients on auscultation.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Hemodialysis</div><div class="term-hint">Click to reveal</div><div class="term-back">A medical procedure that filters waste/excess fluid from the blood when the kidneys cannot. May be required for patients with infective endocarditis who develop renal damage.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Hepatosplenomegaly</div><div class="term-hint">Click to reveal</div><div class="term-back">Enlargement of both the liver and spleen — an observed clinical sign that can occur in infective endocarditis and other systemic infections (also seen in amebiasis, Epstein-Barr virus infection).</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Hypotension</div><div class="term-hint">Click to reveal</div><div class="term-back">Abnormally low blood pressure — a sign of septicemia/septic shock, reflecting cardiovascular collapse from systemic infection and inflammatory response.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Hypothermia</div><div class="term-hint">Click to reveal</div><div class="term-back">Abnormally low body temperature — one of the possible temperature-related signs of septicemia (the other being hyperthermia/fever); reflects dysregulated systemic inflammatory response.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Intractable CHF</div><div class="term-hint">Click to reveal</div><div class="term-back">Congestive heart failure that is difficult or impossible to control with standard treatment — can result from valvular incompetence caused by infective endocarditis damaging heart valves.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Ischemia</div><div class="term-hint">Click to reveal</div><div class="term-back">Insufficient blood supply to a tissue, causing oxygen/nutrient deprivation — can result from vasculitis causing complete constriction of blood vessel lumen, potentially progressing to necrosis.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Janeway Lesions</div><div class="term-hint">Click to reveal</div><div class="term-back">Non-tender, flat (macular) red/purple spots on the palms of the hands and soles of the feet — a classic sign of infective endocarditis, distinguished from Osler nodes by being non-tender.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Lysis of Adhesions</div><div class="term-hint">Click to reveal</div><div class="term-back">A surgical procedure to cut/separate fibrous bands (adhesions) that have formed between tissues — required in chronic pericarditis when the pericardium binds to the heart, and in some cases of infective endocarditis.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Morbidity</div><div class="term-hint">Click to reveal</div><div class="term-back">The state of being diseased, or the rate of disease in a population. Infective endocarditis is described as having high morbidity and generally being fatal if left untreated.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Neti Pot</div><div class="term-hint">Click to reveal</div><div class="term-back">A device used for nasal/sinus irrigation. If filled with contaminated (non-sterile/non-distilled) water, can introduce Naegleria fowleri into the sinuses, where it can travel to the brain and cause primary amoebic meningoencephalitis (PAM).</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Osler Nodes</div><div class="term-hint">Click to reveal</div><div class="term-back">TENDER, raised subcutaneous nodules, usually found on the distal pads of the fingers/toes — a classic sign of infective endocarditis; distinguished from Janeway lesions by being painful/tender.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Paraphernalia (drug)</div><div class="term-hint">Click to reveal</div><div class="term-back">Equipment used for illicit drug use (needles, syringes, etc.) — when contaminated with water-borne bacteria (e.g., Pseudomonas aeruginosa), can be a source of infective endocarditis in IV drug users.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Parenchyma</div><div class="term-hint">Click to reveal</div><div class="term-back">The functional tissue of an organ, as distinguished from its supporting/connective framework. "Brain parenchyma" refers to the functional brain tissue that the blood-brain barrier protects, and that becomes inflamed in encephalitis.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Pericardiocentesis</div><div class="term-hint">Click to reveal</div><div class="term-back">A procedure to drain fluid from the pericardial sac using a needle/catheter — used to relieve cardiac tamponade caused by conditions like extrapulmonary TB pericarditis.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Rales</div><div class="term-hint">Click to reveal</div><div class="term-back">Abnormal crackling/bubbling lung sounds heard on auscultation, often indicating fluid in the airways — can be an observed sign in infective endocarditis patients with associated congestive heart failure.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Roth Spots</div><div class="term-hint">Click to reveal</div><div class="term-back">Retinal hemorrhages with pale/clear centers, seen on fundoscopic exam — a relatively rare (5%) but classic sign of infective endocarditis.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Sarcoidosis</div><div class="term-hint">Click to reveal</div><div class="term-back">A non-infectious inflammatory disease that can cause granuloma formation in various organs, including the meninges — can produce symptoms similar to infectious meningitis without an infectious cause.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Stenosis</div><div class="term-hint">Click to reveal</div><div class="term-back">Abnormal narrowing of a passage or opening — e.g., mitral valve stenosis is a pre-existing heart valve condition that can predispose patients to subacute infective endocarditis.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Subungual</div><div class="term-hint">Click to reveal</div><div class="term-back">Located beneath the fingernail or toenail. Subungual hemorrhages (small areas of bleeding under the nails, sometimes called "splinter hemorrhages") are a classic sign of infective endocarditis.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Tachycardia</div><div class="term-hint">Click to reveal</div><div class="term-back">Abnormally rapid heart rate — one of the signs of septicemia, reflecting the body's compensatory response to systemic infection and the inflammatory cascade.</div></div>
+    <div class="term-card" onclick="this.classList.toggle('open')"><div class="term-front">Transfusions</div><div class="term-hint">Click to reveal</div><div class="term-back">The administration of donated blood or blood products into a patient's circulation. Usually safe and life-saving, but can rarely transmit bacterial, viral, parasitic, or prion pathogens despite donor screening protocols.</div></div>
+  </div>
+</div>
+
+<!-- ════ TAB 8: QUIZ ════ -->
+<div id="quiz" class="tab-content">
+  <h2>Chapter 17 Practice Quiz</h2>
+  <p class="section-intro" style="margin-bottom:20px;">Select the best answer, then submit for your score.</p>
+
+  <div class="quiz-q">
+    <p>1. A patient with septicemia progresses to septic shock. According to chapter statistics, approximately what percentage of septicemia patients progress to septic shock, and what is the approximate mortality once septic shock develops?</p>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">10% progress to septic shock; 10% of those die</button>
+    <button class="quiz-opt" data-correct="true"  onclick="pickOpt(this)">Nearly 40% progress to septic shock; approximately half of those die</button>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">90% progress to septic shock; nearly all of those die</button>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">Septicemia rarely progresses to septic shock; mortality is negligible</button>
+    <div class="quiz-feedback ok">&#10003; Correct! Nearly 40% of patients with septicemia progress to septic shock (SIRS), and of those patients, approximately half will die from the infection. This underscores why septicemia is considered a serious medical emergency requiring rapid recognition and treatment.</div>
+    <div class="quiz-feedback no">&#10007; Incorrect. Nearly 40% of septicemia patients progress to septic shock, and approximately HALF of those patients die from the infection — making septicemia a serious medical emergency.</div>
+  </div>
+
+  <div class="quiz-q">
+    <p>2. A patient with a damaged mitral valve from prior rheumatic fever develops a slow-developing infection of the endocardium following a dental extraction. Which organism is the MOST LIKELY cause, and what type of IE is this?</p>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">Staphylococcus aureus; acute IE</button>
+    <button class="quiz-opt" data-correct="true"  onclick="pickOpt(this)">α-hemolytic Streptococcus; subacute native valve endocarditis</button>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">Pseudomonas aeruginosa; IVDA IE</button>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">Candida albicans; fungal IE</button>
+    <div class="quiz-feedback ok">&#10003; Correct! Subacute native valve endocarditis is SLOW to develop and usually caused by α-hemolytic Streptococcus, often originating from the oral cavity (as in this dental extraction scenario). Pre-existing valve lesions from rheumatic fever provide a site for bacterial colonization. This is exactly why dentists prescribe prophylactic antibiotics before extractions in at-risk patients.</div>
+    <div class="quiz-feedback no">&#10007; Incorrect. The combination of a SLOW-developing infection, a PRE-EXISTING valve lesion (from rheumatic fever), and a DENTAL procedure points to subacute native valve endocarditis caused by α-hemolytic Streptococcus from the oral cavity. S. aureus causes ACUTE IE on normal valves. P. aeruginosa is associated with IVDA. Candida causes fungal IE typically in IV drug users/ICU patients.</div>
+  </div>
+
+  <div class="quiz-q">
+    <p>3. Which pair of clinical signs of infective endocarditis is correctly distinguished by tenderness?</p>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">Roth spots are tender; subungual hemorrhages are non-tender</button>
+    <button class="quiz-opt" data-correct="true"  onclick="pickOpt(this)">Janeway lesions are non-tender maculae on palms/soles; Osler nodes are tender subcutaneous nodules on distal digit pads</button>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">Petechiae are tender; Janeway lesions are tender</button>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">Osler nodes are non-tender; Janeway lesions are tender</button>
+    <div class="quiz-feedback ok">&#10003; Correct! Janeway lesions are NON-TENDER, flat (macular) lesions on the palms and soles. Osler nodes are TENDER, raised subcutaneous nodules typically on the distal pads of the fingers and toes. This tenderness distinction is the classic way to differentiate the two on physical exam — both are signs of infective endocarditis.</div>
+    <div class="quiz-feedback no">&#10007; Incorrect. The key distinction: Janeway lesions = NON-TENDER maculae (flat spots) on palms/soles. Osler nodes = TENDER nodules on distal finger/toe pads. Roth spots are retinal hemorrhages (not a skin finding with tenderness). Subungual hemorrhages and petechiae are not classically distinguished by tenderness in this chapter.</div>
+  </div>
+
+  <div class="quiz-q">
+    <p>4. Myocarditis often goes undetected due to mild or absent symptoms, but can lead to which serious long-term condition that is a leading cause of heart transplantation in the U.S.?</p>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">Cardiac tamponade</button>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">Infective endocarditis</button>
+    <button class="quiz-opt" data-correct="true"  onclick="pickOpt(this)">Cardiomyopathy</button>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">Pericarditis</button>
+    <div class="quiz-feedback ok">&#10003; Correct! Myocarditis (inflammation of the myocardium) can progress to cardiomyopathy — a disease of the heart muscle resulting in heart failure. Myocarditis and cardiomyopathy together are the LEADING CAUSES of heart transplantation in the United States. Because myocarditis symptoms are often mild or absent, the condition frequently goes undetected until significant cardiac damage has occurred.</div>
+    <div class="quiz-feedback no">&#10007; Incorrect. Myocarditis can progress to CARDIOMYOPATHY (heart muscle disease/failure), which along with myocarditis itself is a leading cause of heart transplantation in the U.S. Cardiac tamponade results from pericardial fluid accumulation (e.g., from TB pericarditis), not myocarditis progression.</div>
+  </div>
+
+  <div class="quiz-q">
+    <p>5. A patient with extrapulmonary tuberculosis develops calcium and fibrin deposits that thicken and constrict the pericardial sac, trapping fluid and preventing the heart from moving freely. What is this life-threatening condition, and what procedure relieves it?</p>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">Myocarditis; treated with antiviral medication</button>
+    <button class="quiz-opt" data-correct="true"  onclick="pickOpt(this)">Cardiac tamponade; treated with pericardiocentesis</button>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">Vasculitis; treated with lysis of adhesions</button>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">Bacteremia; treated with hemodialysis</button>
+    <div class="quiz-feedback ok">&#10003; Correct! This describes cardiac tamponade — a life-threatening condition where fluid is trapped in the pericardial sac (here, due to TB-related calcium/fibrin deposits constricting the sac), compressing the heart and preventing normal filling/movement. Pericardiocentesis (needle/catheter drainage of the pericardial fluid) is used to relieve the pressure.</div>
+    <div class="quiz-feedback no">&#10007; Incorrect. This scenario describes cardiac tamponade — fluid trapped in a constricted pericardial sac compressing the heart, caused here by extrapulmonary TB pericarditis. Pericardiocentesis (fluid drainage) relieves the pressure. Lysis of adhesions is used for chronic pericarditis adhesions but doesn't address acute tamponade fluid accumulation.</div>
+  </div>
+
+  <div class="quiz-q">
+    <p>6. A neutropenic patient develops superficial skin lesions on the buttocks and perineum that grow and turn black in the center. Blue-tinged pus is noted. Which organism and syndrome best explain this presentation?</p>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">Staphylococcus aureus; subungual hemorrhage</button>
+    <button class="quiz-opt" data-correct="true"  onclick="pickOpt(this)">Pseudomonas aeruginosa; ecthyma gangrenosum</button>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">Naegleria fowleri; primary amoebic meningoencephalitis</button>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">Mycobacterium tuberculosis; extrapulmonary pericarditis</button>
+    <div class="quiz-feedback ok">&#10003; Correct! Pseudomonas aeruginosa produces a characteristic BLUE PUS due to the pigment pyocyanin. Its affinity for invading blood vessels causes ecthyma gangrenosum — superficial skin lesions (often on buttocks, perineum, axillary region, extremities) that grow and develop a BLACK center from necrosis (destruction of capillaries, arterioles, and venules). Mortality is high among neutropenic patients — exactly the population described.</div>
+    <div class="quiz-feedback no">&#10007; Incorrect. The combination of BLUE pus (pyocyanin pigment) and black-centered, growing skin lesions in a neutropenic patient is classic for Pseudomonas aeruginosa causing ecthyma gangrenosum — a vasculitis-related syndrome with high mortality in neutropenic patients. S. aureus, Naegleria, and M. tuberculosis do not produce this specific presentation.</div>
+  </div>
+
+  <div class="quiz-q">
+    <p>7. Which statement about the blood-brain barrier is accurate?</p>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">It is completely impermeable to all substances, including oxygen and anesthetic drugs</button>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">A separate barrier exists between the brain and CSF, providing a second line of defense</button>
+    <button class="quiz-opt" data-correct="true"  onclick="pickOpt(this)">It prevents entrance of antibodies and large molecules but remains permeable to water, oxygen, CO2, and non-ionic solutes like alcohol, glucose, and anesthetic drugs; once penetrated, clearance of harmful substances is difficult</button>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">It is formed primarily by glial cells and has no relationship to the choroid plexus</button>
+    <div class="quiz-feedback ok">&#10003; Correct! The blood-brain barrier prevents entry of antibodies and large molecules while remaining permeable to water, oxygen, CO2, and non-ionic solutes (alcohol, glucose, anesthetic drugs). It is formed by tight junctions between the choroid plexus, arachnoid epithelial cells, and capillary endothelial cells. Critically, once the barrier is penetrated, clearance of harmful invasive substances is difficult — and NO separate barrier exists between the brain and CSF.</div>
+    <div class="quiz-feedback no">&#10007; Incorrect. The blood-brain barrier is selectively permeable — it blocks antibodies/large molecules but allows water, oxygen, CO2, alcohol, glucose, and anesthetic drugs through. It is formed by tight junctions involving the choroid plexus, arachnoid epithelial cells, and capillary endothelial cells. There is NO separate barrier between brain and CSF — CSF is in direct contact with brain matter.</div>
+  </div>
+
+  <div class="quiz-q">
+    <p>8. An infant between 6 months and 1 year of age is at PEAK risk for Haemophilus influenzae type b (Hib) meningitis. What is the primary reason for this age-specific vulnerability?</p>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">Infants in this age range have not yet developed a blood-brain barrier</button>
+    <button class="quiz-opt" data-correct="true"  onclick="pickOpt(this)">Maternal antibodies (which protected infants ≤3 months) have declined, but the infant's own immune protection (including vaccination) may not yet be complete</button>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">This age group has the highest rate of penetrating skull injuries</button>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">Hib bacteria are only transmissible to children in this specific age range</button>
+    <div class="quiz-feedback ok">&#10003; Correct! Infants 3 months and younger are protected by maternal antibodies, making infection rare in this age group. Between 6 months and 1 year, these maternal antibodies have declined significantly, creating a window of vulnerability before the infant's own immune system (often supported by the Hib vaccine series starting at 2 months) provides full protection. This corresponds with the peak incidence of Hib disease, which carries up to 90% mortality if untreated.</div>
+    <div class="quiz-feedback no">&#10007; Incorrect. The peak incidence between 6 months and 1 year occurs because maternal antibodies (protective for infants ≤3 months) have declined by this age, while the infant's own immunity (including from the Hib vaccine series) may not yet be fully established. The blood-brain barrier exists from early development; this is not about skull injuries or age-restricted transmissibility.</div>
+  </div>
+
+  <div class="quiz-q">
+    <p>9. A patient develops meningitis-like symptoms after swimming and diving in a warm freshwater lake, with the organism gaining entry through the nose. Which organism and condition does this describe, and which statement about transmission is TRUE?</p>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">Cryptococcus; fungal meningitis; transmitted by drinking the contaminated water</button>
+    <button class="quiz-opt" data-correct="true"  onclick="pickOpt(this)">Naegleria fowleri; primary amoebic meningoencephalitis (PAM); drinking contaminated water is NOT a transmission route, and the organism is not found in saltwater</button>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">Listeria monocytogenes; neonatal meningitis; transmitted via maternal-fetal route only</button>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">Haemophilus influenzae; Hib meningitis; transmitted via respiratory droplets only</button>
+    <div class="quiz-feedback ok">&#10003; Correct! Naegleria fowleri is a microscopic amoeba causing primary amoebic meningoencephalitis (PAM). It enters through the NOSE during diving/swimming in warm freshwater (lakes, ponds, rivers, underchlorinated pools, warm springs) — or via contaminated Neti pot water. Importantly, DRINKING contaminated water is NOT a transmission route, and N. fowleri is NOT found in saltwater/coastal waters.</div>
+    <div class="quiz-feedback no">&#10007; Incorrect. The scenario (warm freshwater, nasal entry during swimming/diving) describes Naegleria fowleri causing primary amoebic meningoencephalitis (PAM). Key facts: drinking contaminated water does NOT transmit PAM, and the organism is NOT found in saltwater. Cryptococcus causes chronic fungal meningitis but is not freshwater/nasal-entry associated in this way.</div>
+  </div>
+
+  <div class="quiz-q">
+    <p>10. A craniotomy reveals an encapsulated mass filled with purulent material in the frontal lobe. The patient's history includes a recent blood transfusion for anemia. Which condition was most likely found, and what is the clinical significance of the transfusion history?</p>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">Cardiac tamponade; the transfusion is unrelated and incidental</button>
+    <button class="quiz-opt" data-correct="true"  onclick="pickOpt(this)">Brain abscess; the transfusion history is significant because bacterial contaminants (e.g., S. aureus, S. epidermidis) from transfusion can enter the bloodstream and seed distant sites, including the brain, presenting later as an abscess</button>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">Subdural empyema caused by sinusitis; the transfusion explains the patient's anemia but has no infectious connection</button>
+    <button class="quiz-opt" data-correct="false" onclick="pickOpt(this)">Primary amoebic meningoencephalitis; the transfusion introduced Naegleria fowleri directly into the brain</button>
+    <div class="quiz-feedback ok">&#10003; Correct! An encapsulated mass filled with purulent material in the frontal lobe describes a BRAIN ABSCESS. The recent blood transfusion is clinically significant: transfusion-transmitted bacterial contaminants (such as S. aureus or S. epidermidis, introduced via percutaneous needle puncture during collection/administration) can cause bacteremia/septicemia, with hematogenous spread allowing bacteria to cross into the CNS and form a secondary abscess — connecting the "Transmission of Infections from Donated Blood Products" content directly to a CNS finding.</div>
+    <div class="quiz-feedback no">&#10007; Incorrect. An encapsulated, pus-filled mass in the frontal lobe describes a BRAIN ABSCESS, not tamponade, empyema, or PAM. The blood transfusion history is highly relevant: bacterial contaminants from transfusion (S. aureus, S. epidermidis) can cause bloodstream infection that seeds the brain, forming an abscess — illustrating how circulatory system infections can lead to CNS findings. Naegleria fowleri is freshwater/nasal-transmitted, not transfusion-related.</div>
+  </div>
+
+  <button id="submit-quiz" onclick="submitQuiz()">Submit Quiz</button>
+  <div id="quiz-score"></div>
+</div>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-bar button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+function pickOpt(btn) {
+  const q = btn.closest('.quiz-q');
+  if (q.dataset.answered) return;
+  q.dataset.answered = '1';
+  const correct = btn.dataset.correct === 'true';
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  if (!correct) q.querySelectorAll('.quiz-opt[data-correct="true"]').forEach(b => b.classList.add('correct'));
+  const fbs = q.querySelectorAll('.quiz-feedback');
+  fbs[correct ? 0 : 1].classList.add('show');
+  q.querySelectorAll('.quiz-opt').forEach(b => b.style.pointerEvents = 'none');
+}
+function submitQuiz() {
+  const questions = document.querySelectorAll('.quiz-q');
+  let score = 0;
+  questions.forEach(q => {
+    if (q.dataset.answered) {
+      const chosen = q.querySelector('.quiz-opt.correct');
+      if (chosen && chosen.dataset.correct === 'true') score++;
+    }
+  });
+  const scoreDiv = document.getElementById('quiz-score');
+  scoreDiv.style.display = 'block';
+  const pct = Math.round((score/10)*100);
+  const msg = pct >= 90 ? '&#127942; Excellent! Board-exam ready.' :
+              pct >= 70 ? '&#128077; Good work. Review the questions you missed.' :
+              '&#128218; Review Chapter 17 — focus on Infective Endocarditis signs, Meningitis pathogens, and the Blood-Brain Barrier.';
+  scoreDiv.innerHTML = 'Score: ' + score + ' / 10 &nbsp;(' + pct + '%)&nbsp; &mdash; &nbsp;' + msg;
+}
+</script>
+</body>
+</html>
